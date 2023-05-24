@@ -35,6 +35,10 @@
 			this.button_write = new System.Windows.Forms.Button();
 			this.button_read = new System.Windows.Forms.Button();
 			this.button_delPipe = new System.Windows.Forms.Button();
+			this.groupBox_del = new System.Windows.Forms.GroupBox();
+			this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+			this.button_delAction = new System.Windows.Forms.Button();
+			this.label188 = new System.Windows.Forms.Label();
 			this.groupBox_add = new System.Windows.Forms.GroupBox();
 			this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
 			this.button_addAction = new System.Windows.Forms.Button();
@@ -59,10 +63,6 @@
 			this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
 			this.button_readAction = new System.Windows.Forms.Button();
 			this.label187 = new System.Windows.Forms.Label();
-			this.groupBox_del = new System.Windows.Forms.GroupBox();
-			this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-			this.button_delAction = new System.Windows.Forms.Button();
-			this.label188 = new System.Windows.Forms.Label();
 			this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
 			this.panel163 = new System.Windows.Forms.Panel();
 			this.label164 = new System.Windows.Forms.Label();
@@ -445,10 +445,10 @@
 			this.panel_Main.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.groupBox_del.SuspendLayout();
 			this.groupBox_add.SuspendLayout();
 			this.groupBox_write.SuspendLayout();
 			this.groupBox_read.SuspendLayout();
-			this.groupBox_del.SuspendLayout();
 			this.flowLayoutPanel8.SuspendLayout();
 			this.panel163.SuspendLayout();
 			this.panel164.SuspendLayout();
@@ -659,20 +659,22 @@
 			this.panel_Main.Name = "panel_Main";
 			this.panel_Main.Size = new System.Drawing.Size(986, 524);
 			this.panel_Main.TabIndex = 3;
+			this.panel_Main.Click += new System.EventHandler(this.panel_Main_Click);
 			// 
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.AliceBlue;
 			this.panel1.Controls.Add(this.groupBox1);
-			this.panel1.Controls.Add(this.groupBox_add);
-			this.panel1.Controls.Add(this.groupBox_write);
 			this.panel1.Controls.Add(this.groupBox_read);
 			this.panel1.Controls.Add(this.groupBox_del);
+			this.panel1.Controls.Add(this.groupBox_add);
+			this.panel1.Controls.Add(this.groupBox_write);
 			this.panel1.Location = new System.Drawing.Point(3, 363);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(980, 158);
 			this.panel1.TabIndex = 8;
 			this.panel1.Visible = false;
+			this.panel1.VisibleChanged += new System.EventHandler(this.Panel1_VisibleChanged);
 			// 
 			// groupBox1
 			// 
@@ -695,6 +697,7 @@
 			this.button_addPipe.TabIndex = 0;
 			this.button_addPipe.Text = "Создать канал";
 			this.button_addPipe.UseVisualStyleBackColor = true;
+			this.button_addPipe.Click += new System.EventHandler(this.Button_addPipe_Click);
 			// 
 			// button_write
 			// 
@@ -704,6 +707,7 @@
 			this.button_write.TabIndex = 3;
 			this.button_write.Text = "Запись в канал";
 			this.button_write.UseVisualStyleBackColor = true;
+			this.button_write.Click += new System.EventHandler(this.Button_write_Click);
 			// 
 			// button_read
 			// 
@@ -713,6 +717,7 @@
 			this.button_read.TabIndex = 2;
 			this.button_read.Text = "Чтение из канала";
 			this.button_read.UseVisualStyleBackColor = true;
+			this.button_read.Click += new System.EventHandler(this.Button_read_Click);
 			// 
 			// button_delPipe
 			// 
@@ -722,6 +727,49 @@
 			this.button_delPipe.TabIndex = 1;
 			this.button_delPipe.Text = "Удалить канал";
 			this.button_delPipe.UseVisualStyleBackColor = true;
+			this.button_delPipe.Click += new System.EventHandler(this.Button_delPipe_Click);
+			// 
+			// groupBox_del
+			// 
+			this.groupBox_del.Controls.Add(this.maskedTextBox2);
+			this.groupBox_del.Controls.Add(this.button_delAction);
+			this.groupBox_del.Controls.Add(this.label188);
+			this.groupBox_del.Location = new System.Drawing.Point(390, 3);
+			this.groupBox_del.Name = "groupBox_del";
+			this.groupBox_del.Size = new System.Drawing.Size(587, 152);
+			this.groupBox_del.TabIndex = 7;
+			this.groupBox_del.TabStop = false;
+			this.groupBox_del.Text = "Удаление канала";
+			this.groupBox_del.Visible = false;
+			// 
+			// maskedTextBox2
+			// 
+			this.maskedTextBox2.Location = new System.Drawing.Point(80, 26);
+			this.maskedTextBox2.Mask = "000";
+			this.maskedTextBox2.Name = "maskedTextBox2";
+			this.maskedTextBox2.Size = new System.Drawing.Size(101, 20);
+			this.maskedTextBox2.TabIndex = 6;
+			this.maskedTextBox2.TextChanged += new System.EventHandler(this.MaskedTextBox2_TextChanged);
+			// 
+			// button_delAction
+			// 
+			this.button_delAction.Enabled = false;
+			this.button_delAction.Location = new System.Drawing.Point(446, 118);
+			this.button_delAction.Name = "button_delAction";
+			this.button_delAction.Size = new System.Drawing.Size(135, 23);
+			this.button_delAction.TabIndex = 4;
+			this.button_delAction.Text = "Добавить";
+			this.button_delAction.UseVisualStyleBackColor = true;
+			this.button_delAction.Click += new System.EventHandler(this.Button_delAction_Click);
+			// 
+			// label188
+			// 
+			this.label188.AutoSize = true;
+			this.label188.Location = new System.Drawing.Point(6, 29);
+			this.label188.Name = "label188";
+			this.label188.Size = new System.Drawing.Size(68, 13);
+			this.label188.TabIndex = 0;
+			this.label188.Text = "Имя канала";
 			// 
 			// groupBox_add
 			// 
@@ -747,6 +795,7 @@
 			this.maskedTextBox1.Name = "maskedTextBox1";
 			this.maskedTextBox1.Size = new System.Drawing.Size(101, 20);
 			this.maskedTextBox1.TabIndex = 6;
+			this.maskedTextBox1.TextChanged += new System.EventHandler(this.MaskedTextBox1_TextChanged);
 			// 
 			// button_addAction
 			// 
@@ -757,6 +806,7 @@
 			this.button_addAction.TabIndex = 4;
 			this.button_addAction.Text = "Добавить";
 			this.button_addAction.UseVisualStyleBackColor = true;
+			this.button_addAction.Click += new System.EventHandler(this.Button_addAction_Click);
 			// 
 			// radioButton3
 			// 
@@ -833,6 +883,7 @@
 			this.maskedTextBox6.Name = "maskedTextBox6";
 			this.maskedTextBox6.Size = new System.Drawing.Size(35, 20);
 			this.maskedTextBox6.TabIndex = 10;
+			this.maskedTextBox6.TextChanged += new System.EventHandler(this.MaskedTextBox6_TextChanged);
 			// 
 			// label191
 			// 
@@ -850,6 +901,7 @@
 			this.maskedTextBox5.Name = "maskedTextBox5";
 			this.maskedTextBox5.Size = new System.Drawing.Size(35, 20);
 			this.maskedTextBox5.TabIndex = 8;
+			this.maskedTextBox5.TextChanged += new System.EventHandler(this.MaskedTextBox5_TextChanged);
 			// 
 			// label190
 			// 
@@ -867,6 +919,7 @@
 			this.maskedTextBox4.Name = "maskedTextBox4";
 			this.maskedTextBox4.Size = new System.Drawing.Size(101, 20);
 			this.maskedTextBox4.TabIndex = 6;
+			this.maskedTextBox4.TextChanged += new System.EventHandler(this.MaskedTextBox4_TextChanged);
 			// 
 			// button_writeAction
 			// 
@@ -877,6 +930,7 @@
 			this.button_writeAction.TabIndex = 4;
 			this.button_writeAction.Text = "Добавить";
 			this.button_writeAction.UseVisualStyleBackColor = true;
+			this.button_writeAction.Click += new System.EventHandler(this.Button_writeAction_Click);
 			// 
 			// label189
 			// 
@@ -911,6 +965,7 @@
 			this.maskedTextBox7.Name = "maskedTextBox7";
 			this.maskedTextBox7.Size = new System.Drawing.Size(35, 20);
 			this.maskedTextBox7.TabIndex = 14;
+			this.maskedTextBox7.TextChanged += new System.EventHandler(this.MaskedTextBox7_TextChanged);
 			// 
 			// label192
 			// 
@@ -928,6 +983,7 @@
 			this.maskedTextBox8.Name = "maskedTextBox8";
 			this.maskedTextBox8.Size = new System.Drawing.Size(35, 20);
 			this.maskedTextBox8.TabIndex = 12;
+			this.maskedTextBox8.TextChanged += new System.EventHandler(this.MaskedTextBox8_TextChanged);
 			// 
 			// label193
 			// 
@@ -945,6 +1001,7 @@
 			this.maskedTextBox3.Name = "maskedTextBox3";
 			this.maskedTextBox3.Size = new System.Drawing.Size(101, 20);
 			this.maskedTextBox3.TabIndex = 6;
+			this.maskedTextBox3.TextChanged += new System.EventHandler(this.MaskedTextBox3_TextChanged);
 			// 
 			// button_readAction
 			// 
@@ -955,6 +1012,7 @@
 			this.button_readAction.TabIndex = 4;
 			this.button_readAction.Text = "Добавить";
 			this.button_readAction.UseVisualStyleBackColor = true;
+			this.button_readAction.Click += new System.EventHandler(this.Button_readAction_Click);
 			// 
 			// label187
 			// 
@@ -964,46 +1022,6 @@
 			this.label187.Size = new System.Drawing.Size(68, 13);
 			this.label187.TabIndex = 0;
 			this.label187.Text = "Имя канала";
-			// 
-			// groupBox_del
-			// 
-			this.groupBox_del.Controls.Add(this.maskedTextBox2);
-			this.groupBox_del.Controls.Add(this.button_delAction);
-			this.groupBox_del.Controls.Add(this.label188);
-			this.groupBox_del.Location = new System.Drawing.Point(390, 3);
-			this.groupBox_del.Name = "groupBox_del";
-			this.groupBox_del.Size = new System.Drawing.Size(587, 152);
-			this.groupBox_del.TabIndex = 7;
-			this.groupBox_del.TabStop = false;
-			this.groupBox_del.Text = "Удаление канала";
-			this.groupBox_del.Visible = false;
-			// 
-			// maskedTextBox2
-			// 
-			this.maskedTextBox2.Location = new System.Drawing.Point(80, 26);
-			this.maskedTextBox2.Mask = "000";
-			this.maskedTextBox2.Name = "maskedTextBox2";
-			this.maskedTextBox2.Size = new System.Drawing.Size(101, 20);
-			this.maskedTextBox2.TabIndex = 6;
-			// 
-			// button_delAction
-			// 
-			this.button_delAction.Enabled = false;
-			this.button_delAction.Location = new System.Drawing.Point(446, 118);
-			this.button_delAction.Name = "button_delAction";
-			this.button_delAction.Size = new System.Drawing.Size(135, 23);
-			this.button_delAction.TabIndex = 4;
-			this.button_delAction.Text = "Добавить";
-			this.button_delAction.UseVisualStyleBackColor = true;
-			// 
-			// label188
-			// 
-			this.label188.AutoSize = true;
-			this.label188.Location = new System.Drawing.Point(6, 29);
-			this.label188.Name = "label188";
-			this.label188.Size = new System.Drawing.Size(68, 13);
-			this.label188.TabIndex = 0;
-			this.label188.Text = "Имя канала";
 			// 
 			// flowLayoutPanel8
 			// 
@@ -1036,6 +1054,7 @@
 			this.flowLayoutPanel8.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel8.TabIndex = 7;
 			this.flowLayoutPanel8.Visible = false;
+			this.flowLayoutPanel8.Click += new System.EventHandler(this.FlowLayoutPanel8_Click);
 			// 
 			// panel163
 			// 
@@ -1482,6 +1501,7 @@
 			this.flowLayoutPanel7.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel7.TabIndex = 6;
 			this.flowLayoutPanel7.Visible = false;
+			this.flowLayoutPanel7.Click += new System.EventHandler(this.FlowLayoutPanel7_Click);
 			// 
 			// panel140
 			// 
@@ -1928,6 +1948,7 @@
 			this.flowLayoutPanel6.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel6.TabIndex = 5;
 			this.flowLayoutPanel6.Visible = false;
+			this.flowLayoutPanel6.Click += new System.EventHandler(this.FlowLayoutPanel6_Click);
 			// 
 			// panel117
 			// 
@@ -2374,6 +2395,7 @@
 			this.flowLayoutPanel5.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel5.TabIndex = 4;
 			this.flowLayoutPanel5.Visible = false;
+			this.flowLayoutPanel5.Click += new System.EventHandler(this.FlowLayoutPanel5_Click);
 			// 
 			// panel94
 			// 
@@ -2820,6 +2842,7 @@
 			this.flowLayoutPanel4.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel4.TabIndex = 3;
 			this.flowLayoutPanel4.Visible = false;
+			this.flowLayoutPanel4.Click += new System.EventHandler(this.FlowLayoutPanel4_Click);
 			// 
 			// panel71
 			// 
@@ -3266,6 +3289,7 @@
 			this.flowLayoutPanel3.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel3.TabIndex = 2;
 			this.flowLayoutPanel3.Visible = false;
+			this.flowLayoutPanel3.Click += new System.EventHandler(this.FlowLayoutPanel3_Click);
 			// 
 			// panel70
 			// 
@@ -3712,6 +3736,7 @@
 			this.flowLayoutPanel2.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel2.TabIndex = 1;
 			this.flowLayoutPanel2.Visible = false;
+			this.flowLayoutPanel2.Click += new System.EventHandler(this.FlowLayoutPanel2_Click);
 			// 
 			// panel25
 			// 
@@ -4158,6 +4183,7 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(980, 39);
 			this.flowLayoutPanel1.TabIndex = 0;
 			this.flowLayoutPanel1.Visible = false;
+			this.flowLayoutPanel1.Click += new System.EventHandler(this.FlowLayoutPanel1_Click);
 			// 
 			// panel2
 			// 
@@ -4583,6 +4609,7 @@
 			this.button_AddProcess.TabIndex = 4;
 			this.button_AddProcess.Text = "Добавить процесс";
 			this.button_AddProcess.UseVisualStyleBackColor = true;
+			this.button_AddProcess.Click += new System.EventHandler(this.Button_AddProcess_Click);
 			// 
 			// button_DelProcess
 			// 
@@ -4593,6 +4620,7 @@
 			this.button_DelProcess.TabIndex = 5;
 			this.button_DelProcess.Text = "Удалить процесс";
 			this.button_DelProcess.UseVisualStyleBackColor = true;
+			this.button_DelProcess.Click += new System.EventHandler(this.Button_DelProcess_Click);
 			// 
 			// button_start
 			// 
@@ -4603,6 +4631,7 @@
 			this.button_start.TabIndex = 6;
 			this.button_start.Text = " Запуск модели";
 			this.button_start.UseVisualStyleBackColor = true;
+			this.button_start.Click += new System.EventHandler(this.Button_start_Click);
 			// 
 			// MainForm
 			// 
@@ -4620,17 +4649,18 @@
 			this.Name = "MainForm";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.Text = "Именованные каналы";
+			this.Click += new System.EventHandler(this.MainForm_Click);
 			this.panel_Main.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
+			this.groupBox_del.ResumeLayout(false);
+			this.groupBox_del.PerformLayout();
 			this.groupBox_add.ResumeLayout(false);
 			this.groupBox_add.PerformLayout();
 			this.groupBox_write.ResumeLayout(false);
 			this.groupBox_write.PerformLayout();
 			this.groupBox_read.ResumeLayout(false);
 			this.groupBox_read.PerformLayout();
-			this.groupBox_del.ResumeLayout(false);
-			this.groupBox_del.PerformLayout();
 			this.flowLayoutPanel8.ResumeLayout(false);
 			this.panel163.ResumeLayout(false);
 			this.panel163.PerformLayout();
