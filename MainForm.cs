@@ -16,7 +16,7 @@ namespace KP_OS_Sharp
 		private int selected_process = -1;
 		private int processes_number = 0;
 		private List<int> actions;
-		private List<List<int>> programms;
+		private List<List<int>> programs;
 
 		private List<FlowLayoutPanel> flowLayoutPanels;
 		private List<Panel> panels;
@@ -26,15 +26,15 @@ namespace KP_OS_Sharp
 		{
 			InitializeComponent();
 
-			programms = new List<List<int>>();
+			programs = new List<List<int>>();
 
 			for (int i = 0; i < 184; i++)
 			{
-				programms.Add(new List<int>());
+				programs.Add(new List<int>());
 
 				for (int j = 0; j < 3; j++)
 				{
-					programms[i].Add(0);
+					programs[i].Add(0);
 				}
 			}
 
@@ -464,10 +464,10 @@ namespace KP_OS_Sharp
 			if (actions[selected_process] == 23)
 				panel1.Visible = false;
 
-			programms[index].Clear();
-			programms[index].Add(actionType);
-			programms[index].Add(int.Parse(text));
-			programms[index].Add(code);
+			programs[index].Clear();
+			programs[index].Add(actionType);
+			programs[index].Add(int.Parse(text));
+			programs[index].Add(code);
 		}
 
 		private void CheckReady(string name, string period, string number, Button readyButton)
@@ -546,12 +546,12 @@ namespace KP_OS_Sharp
 						labels[i * 23 + j].Text = labels[i * 23 + 23 + j].Text;
 						panels[i * 23 + j].Visible = panels[i * 23 + 23 + j].Visible;
 
-						programms[i * 23 + j].Clear();
+						programs[i * 23 + j].Clear();
 
 						for (int k = 0; k < 3; k++)
 						{
-							programms[i * 23 + j].Insert(k, programms[i * 23 + 23 + j].First());
-							programms[i * 23 + 23 + j].RemoveAt(0);
+							programs[i * 23 + j].Insert(k, programs[i * 23 + 23 + j].First());
+							programs[i * 23 + 23 + j].RemoveAt(0);
 						}
 					}
 
@@ -572,48 +572,7 @@ namespace KP_OS_Sharp
 
 		private void Button_start_Click(object sender, EventArgs e)
 		{
-            List<Command> program = new List<Command>();
-
-
-            for (int i = 0; i < processes_number; i++)
-            {
-                for (int j = 0; j < actions[i]; j++)
-                {
-                    int commandCode = programms[i * 23 + j][0];
-                    int pipeName = programms[i * 23 + j][1];
-                    int specialCode = programms[i * 23 + j][2];
-                    
-                    programms[i * 23 + j].Clear();
-
-                    Command command = null;
-
-                    if (commandCode == 0)
-                    {
-                        command = new CreateCommand(pipeName, specialCode);
-                    }
-                    else if (commandCode == 1)
-                    {
-                        ;
-                    }
-                    else if (commandCode == 2)
-                    {
-                        ;
-                    }
-                    else if (commandCode == 3)
-                    {
-                        ;
-                    }
-
-                    if (command != null)
-                        program.Add(command);
-                }
-
-
-                OSystem.OS().AddProcess(program);
-                program.Clear();
-            }
-
-            ModelForm p = new ModelForm();
+            ModelForm p = new ModelForm(processes_number, programs, actions);
             p.ShowDialog();
 
             OSystem.OS().Stop();
@@ -713,7 +672,7 @@ namespace KP_OS_Sharp
 			UnselectProcess();
 		}
 
-		private void panel_Main_Click(object sender, EventArgs e)
+		private void Panel_Main_Click(object sender, EventArgs e)
 		{
 			UnselectProcess();
 		}
@@ -732,9 +691,9 @@ namespace KP_OS_Sharp
 
 		private void Button_writeAction_Click(object sender, EventArgs e)
 		{
-			AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, System.Int32.Parse(maskedTextBox6.Text));
+			AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, int.Parse(maskedTextBox6.Text));
 
-			int n = System.Int32.Parse(maskedTextBox5.Text) - 1;
+			int n = int.Parse(maskedTextBox5.Text) - 1;
 
 			for (int i = 0; i < n; i++)
 			{
@@ -744,9 +703,9 @@ namespace KP_OS_Sharp
 
 		private void Button_readAction_Click(object sender, EventArgs e)
 		{
-			AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, System.Int32.Parse(maskedTextBox7.Text));
+			AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, int.Parse(maskedTextBox7.Text));
 
-			int n = System.Int32.Parse(maskedTextBox8.Text) - 1;
+			int n = int.Parse(maskedTextBox8.Text) - 1;
 
 			for (int i = 0; i < n; i++)
 			{

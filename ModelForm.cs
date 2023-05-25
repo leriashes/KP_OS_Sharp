@@ -14,8 +14,11 @@ namespace KP_OS_Sharp
 	{
         private List<TextBox> textBoxes;
         private List<GroupBox> groupBoxes;
+        private int processes_number = 0;
+        private List<List<int>> programs;
+        private List<int> actions;
 
-        public ModelForm()
+        public ModelForm(int processesNumber, List<List<int>> programs, List<int> actions)
 		{
 			InitializeComponent();
 
@@ -41,30 +44,79 @@ namespace KP_OS_Sharp
             groupBoxes.Add(groupBox7);
             groupBoxes.Add(groupBox8);
             groupBoxes.Add(groupBox9);
+
+            OSystem.OS().Output = textBox9;
+            OSystem.OS().Outputs = textBoxes;
+
+            processes_number = processesNumber;
+            this.programs = programs;
+            this.actions = actions;
         }
 
         private void ModelForm_Load(object sender, EventArgs e)
         {
-            int n = OSystem.OS().GetProcessesNumber();
+            List<Command> program = new List<Command>();
+
+            for (int i = 0; i < processes_number; i++)
+            {
+                for (int j = 0; j < actions[i]; j++)
+                {
+                    int commandCode = programs[i * 23 + j][0];
+                    int pipeName = programs[i * 23 + j][1];
+                    int specialCode = programs[i * 23 + j][2];
+
+                    //programs[i * 23 + j].Clear();
+
+                    Command command = null;
+
+                    if (commandCode == 0)
+                    {
+                        command = new CreateCommand(pipeName, specialCode);
+                    }
+                    else if (commandCode == 1)
+                    {
+                        ;
+                    }
+                    else if (commandCode == 2)
+                    {
+                        ;
+                    }
+                    else if (commandCode == 3)
+                    {
+                        ;
+                    }
+
+                    if (command != null)
+                        program.Add(command);
+                }
+
+
+                OSystem.OS().AddProcess(program);
+                program.Clear();
+            }
 
             for (int i = 0; i < 8; i++)
             {
-                groupBoxes[i].Visible = i < n;
+                groupBoxes[i].Visible = i < processes_number;
 
-                if (i < n)
-                    textBox9.Text += "Процесс " + (i + 1).ToString() + " создан.\r\n";
+                //if (i < processes_number)
+                    //OSystem.OS().AddProcess();
+                    //textBox9.Text += "Процесс " + (i + 1).ToString() + " создан.\r\n";
             }
 
             textBox9.Text += "\r\n";
 
-            while (true)
+            timer1.Enabled = true;
+
+            OSystem.OS().Start();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (OSystem.OS().Tick())
             {
-                for (int i = 0; i < n; i++)
-                {
-
-                }
-
-                break;
+                timer1.Enabled = false;
+                OSystem.OS().Stop(); 
             }
         }
     }

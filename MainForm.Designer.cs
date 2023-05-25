@@ -659,7 +659,7 @@
 			this.panel_Main.Name = "panel_Main";
 			this.panel_Main.Size = new System.Drawing.Size(986, 524);
 			this.panel_Main.TabIndex = 3;
-			this.panel_Main.Click += new System.EventHandler(this.panel_Main_Click);
+			this.panel_Main.Click += new System.EventHandler(this.Panel_Main_Click);
 			// 
 			// panel1
 			// 

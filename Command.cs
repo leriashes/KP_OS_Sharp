@@ -35,6 +35,16 @@ namespace KP_OS_Sharp
         }
 
 
+        protected System.Windows.Forms.TextBox output;
+
+        public System.Windows.Forms.TextBox Output
+        {
+            set 
+            { 
+                output = value; 
+            }
+        }
+
         public Command(int pipeName)
         {
             this.pipeName = pipeName;
