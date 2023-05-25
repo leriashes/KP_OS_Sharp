@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KP_OS_Sharp
 {
@@ -16,7 +17,24 @@ namespace KP_OS_Sharp
 
         public override int Run()
         {
-            return OSystem.OS().DeletePipe(PID, pipeName);
+            int result = OSystem.OS().DeletePipe(PID, pipeName);
+
+            if (result == 0)
+            {
+                output.Text += "Удалён канал \"" + pipeName + "\".\r\n";
+            }
+            else if (result == 1)
+            {
+                output.Text += "Не удалось удалить канал \"" + pipeName + "\": нет прав.\r\n";
+                result = 0;
+            }
+            else
+            {
+                output.Text += "Не удалось удалить канал \"" + pipeName + "\": канал с заданным именем не существует.\r\n";
+                result = 0;
+            }
+
+            return result;
         }
     }
 }

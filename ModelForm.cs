@@ -75,7 +75,7 @@ namespace KP_OS_Sharp
                     }
                     else if (commandCode == 1)
                     {
-                        ;
+                        command = new DeleteCommand(pipeName);
                     }
                     else if (commandCode == 2)
                     {

@@ -194,6 +194,8 @@ namespace KP_OS_Sharp
             if (result == 0)
             {
                 pipes.RemoveAt(k); ;
+
+                output.Text += "\r\nКанал \"" + pipeName + "\" удалён.\r\n";
             }
 
             return result;
