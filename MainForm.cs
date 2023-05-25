@@ -18,9 +18,9 @@ namespace KP_OS_Sharp
 		private List<int> actions;
 		private List<List<int>> programms;
 
-		private List<System.Windows.Forms.FlowLayoutPanel> flowLayoutPanels;
-		private List<System.Windows.Forms.Panel> panels;
-		private List<System.Windows.Forms.Label> labels;
+		private List<FlowLayoutPanel> flowLayoutPanels;
+		private List<Panel> panels;
+		private List<Label> labels;
 
 		public MainForm()
 		{
@@ -38,9 +38,9 @@ namespace KP_OS_Sharp
 				}
 			}
 
-			flowLayoutPanels = new List<System.Windows.Forms.FlowLayoutPanel>();
-			panels = new List<System.Windows.Forms.Panel>();
-			labels = new List<System.Windows.Forms.Label>();
+			flowLayoutPanels = new List<FlowLayoutPanel>();
+			panels = new List<Panel>();
+			labels = new List<Label>();
 
 			flowLayoutPanels.Add(flowLayoutPanel1);
 			flowLayoutPanels.Add(flowLayoutPanel2);
@@ -444,20 +444,18 @@ namespace KP_OS_Sharp
 
 			for (int i = 0; i < 184; i++)
 			{
-				labels[i].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+				labels[i].TextAlign = ContentAlignment.MiddleCenter;
 				labels[i].AutoSize = false;
-				labels[i].Dock = System.Windows.Forms.DockStyle.Fill;
-				labels[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+				labels[i].Dock = DockStyle.Fill;
+				labels[i].Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
 			}
-
-			//OSystem::OS();
 		}
 
-		private void AddAction(object sender, System.EventArgs e, System.Drawing.Color color, System.String text, int actionType, int code)
+		private void AddAction(object sender, EventArgs e, Color color, string text, int actionType, int code)
 		{
 			int index = selected_process * 23 + actions[selected_process];
 			panels[index].BackColor = color;
-			labels[index].Text = System.Int32.Parse(text).ToString();
+			labels[index].Text = int.Parse(text).ToString();
 			panels[index].Visible = true;
 			actions[selected_process] += 1;
 
@@ -468,13 +466,13 @@ namespace KP_OS_Sharp
 
 			programms[index].Clear();
 			programms[index].Add(actionType);
-			programms[index].Add(System.Int32.Parse(text));
+			programms[index].Add(int.Parse(text));
 			programms[index].Add(code);
 		}
 
-		private void CheckReady(System.String name, System.String period, System.String number, System.Windows.Forms.Button readyButton)
+		private void CheckReady(string name, string period, string number, Button readyButton)
 		{
-			if (name == "" || period == "" || number == "" || System.Int32.Parse(period) > 23 - actions[selected_process] || System.Int32.Parse(period) == 0)
+			if (name == "" || period == "" || number == "" || int.Parse(period) > 23 - actions[selected_process] || int.Parse(period) == 0)
 				readyButton.Enabled = false;
 			else
 				readyButton.Enabled = true;
@@ -574,8 +572,52 @@ namespace KP_OS_Sharp
 
 		private void Button_start_Click(object sender, EventArgs e)
 		{
+            List<Command> program = new List<Command>();
 
-		}
+
+            for (int i = 0; i < processes_number; i++)
+            {
+                for (int j = 0; j < actions[i]; j++)
+                {
+                    int commandCode = programms[i * 23 + j][0];
+                    int pipeName = programms[i * 23 + j][1];
+                    int specialCode = programms[i * 23 + j][2];
+                    
+                    programms[i * 23 + j].Clear();
+
+                    Command command = null;
+
+                    if (commandCode == 0)
+                    {
+                        command = new CreateCommand(pipeName, specialCode);
+                    }
+                    else if (commandCode == 1)
+                    {
+                        ;
+                    }
+                    else if (commandCode == 2)
+                    {
+                        ;
+                    }
+                    else if (commandCode == 3)
+                    {
+                        ;
+                    }
+
+                    if (command != null)
+                        program.Add(command);
+                }
+
+
+                OSystem.OS().AddProcess(program);
+                program.Clear();
+            }
+
+            ModelForm p = new ModelForm();
+            p.ShowDialog();
+
+            OSystem.OS().Stop();
+        }
 
 		private void FlowLayoutPanel1_Click(object sender, EventArgs e)
 		{
