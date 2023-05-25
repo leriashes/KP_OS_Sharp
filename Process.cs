@@ -54,7 +54,7 @@ namespace KP_OS_Sharp
             {
                 if (program.Count() == 0 || commandCounter >= program.Count())
                 {
-                    output.Text += "Процесс завершён.\r\n";
+                    output.Text += "Завершил работу.\r\n";
                     result = false;
                     status = false;
                 }
@@ -62,7 +62,7 @@ namespace KP_OS_Sharp
                 {
                     int res = program[commandCounter].Run();
 
-                    if (res == 0 || res == 1)
+                    if (res == 0)
                     {
                         commandCounter++;
                     }

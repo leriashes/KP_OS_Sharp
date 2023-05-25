@@ -95,6 +95,8 @@ namespace KP_OS_Sharp
 
         public bool Tick()
         {
+            output.Text += "\r\n\r\n---------- " + countTicks + " ----------";
+
             for (int i = 0; i < processes.Count(); i++)
             {
                 if (processes[i].Status)
@@ -105,6 +107,7 @@ namespace KP_OS_Sharp
                     if (!processes[i].Run())
                     {
                         countReady++;
+                        output.Text += "\r\nПроцесс " + (i + 1) + " завершён.\r\n"; 
                     }
 
                     outputs[i].Text += "\r\n";
@@ -118,6 +121,16 @@ namespace KP_OS_Sharp
 
         public void Stop()
         {
+            output.Text += "\r\n\r\n\r\n----- ВСЕ ПРОЦЕССЫ ЗАВЕРШЕНЫ -----";
+
+            if (pipes.Count()  > 0) 
+            {
+                for (int i = 0; i < pipes.Count(); i++) 
+                {
+                    output.Text += "\r\nКанал \"" + pipes[i].Name + "\" закрыт операционной системой.\r\n";
+                }
+            }
+
             processes.Clear();
             pipes.Clear();
         }

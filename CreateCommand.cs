@@ -25,7 +25,8 @@ namespace KP_OS_Sharp
             }
             else if (result == 1)
             {
-                output.Text += "Не могу создать канал \"" + pipeName + "\": канал с заданным именем уже существует.\r\n";
+                output.Text += "Не удалось создать канал \"" + pipeName + "\": канал с заданным именем уже существует.\r\n";
+                result = 0;
             }
 
             return result;
