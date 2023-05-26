@@ -519,7 +519,7 @@ namespace KP_OS_Sharp
 				button_AddProcess.Enabled = false;
 			}
 
-			button_start.Enabled = true;
+			CheckReady();
 		}
 
 		private void Button_DelProcess_Click(object sender, EventArgs e)
@@ -561,8 +561,7 @@ namespace KP_OS_Sharp
 					flowLayoutPanels[i].Visible = state;
 				}
 
-				if (processes_number == 0)
-					button_start.Enabled = false;
+				CheckReady();
 
 			}
 
@@ -573,7 +572,7 @@ namespace KP_OS_Sharp
 
 		private void Button_start_Click(object sender, EventArgs e)
 		{
-            ModelForm p = new ModelForm(processes_number, programs, actions);
+            ModelForm p = new ModelForm(int.Parse(maskedTextBox9.Text), processes_number, programs, actions);
             p.ShowDialog();
 
             OSystem.OS().Stop();
@@ -758,5 +757,15 @@ namespace KP_OS_Sharp
 		{
 			CheckReady(maskedTextBox3.Text, maskedTextBox8.Text, maskedTextBox7.Text, button_readAction);
 		}
+
+        private void MaskedTextBox9_TextChanged(object sender, EventArgs e)
+        {
+			CheckReady();
+        }
+
+		private void CheckReady()
+		{
+            button_start.Enabled = maskedTextBox9.Text != "" && processes_number > 0;
+        }
 	}
 }

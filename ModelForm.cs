@@ -18,7 +18,7 @@ namespace KP_OS_Sharp
         private List<List<int>> programs;
         private List<int> actions;
 
-        public ModelForm(int processesNumber, List<List<int>> programs, List<int> actions)
+        public ModelForm(int timerInterval, int processesNumber, List<List<int>> programs, List<int> actions)
 		{
 			InitializeComponent();
 
@@ -51,6 +51,8 @@ namespace KP_OS_Sharp
             processes_number = processesNumber;
             this.programs = programs;
             this.actions = actions;
+
+            timer1.Interval = timerInterval * 1000;
         }
 
         private void ModelForm_Load(object sender, EventArgs e)
@@ -97,17 +99,16 @@ namespace KP_OS_Sharp
             for (int i = 0; i < 8; i++)
             {
                 groupBoxes[i].Visible = i < processes_number;
-
-                //if (i < processes_number)
-                    //OSystem.OS().AddProcess();
-                    //textBox9.Text += "Процесс " + (i + 1).ToString() + " создан.\r\n";
             }
 
             textBox9.Text += "\r\n";
 
-            timer1.Enabled = true;
-
             OSystem.OS().Start();
+
+            Timer1_Tick(sender, e);
+
+            timer1.Enabled = true;
+            button_next.Enabled = true;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -115,8 +116,17 @@ namespace KP_OS_Sharp
             if (OSystem.OS().Tick())
             {
                 timer1.Enabled = false;
+                button_next.Enabled = false;
                 OSystem.OS().Stop(); 
             }
+        }
+
+        private void Button_next_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            timer1.Enabled = true;
+
+            Timer1_Tick(sender, e);
         }
     }
 }

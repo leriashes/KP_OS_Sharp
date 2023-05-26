@@ -48,6 +48,7 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button_next = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -169,7 +170,7 @@
             this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox9.Size = new System.Drawing.Size(240, 654);
+            this.groupBox9.Size = new System.Drawing.Size(240, 604);
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Операционная система";
@@ -183,7 +184,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox9.Size = new System.Drawing.Size(230, 631);
+            this.textBox9.Size = new System.Drawing.Size(230, 582);
             this.textBox9.TabIndex = 1;
             // 
             // groupBox5
@@ -296,12 +297,23 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // button_next
+            // 
+            this.button_next.Location = new System.Drawing.Point(903, 615);
+            this.button_next.Name = "button_next";
+            this.button_next.Size = new System.Drawing.Size(230, 40);
+            this.button_next.TabIndex = 10;
+            this.button_next.Text = "Далее";
+            this.button_next.UseVisualStyleBackColor = true;
+            this.button_next.Click += new System.EventHandler(this.Button_next_Click);
+            // 
             // ModelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1149, 672);
+            this.Controls.Add(this.button_next);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -361,5 +373,6 @@
 		private System.Windows.Forms.GroupBox groupBox8;
 		private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button_next;
     }
 }
