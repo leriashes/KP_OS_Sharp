@@ -10,7 +10,7 @@ namespace KP_OS_Sharp
     internal class DeleteCommand : Command
     {
 
-        public DeleteCommand(int pipeName) : base(pipeName)
+        public DeleteCommand(int pipeName) : base(pipeName, 1)
         {
 
         }

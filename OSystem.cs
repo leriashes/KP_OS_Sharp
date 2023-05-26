@@ -38,7 +38,6 @@ namespace KP_OS_Sharp
             }
         }
 
-
         protected OSystem() 
         {
             processes = new List<Process>();
@@ -101,7 +100,6 @@ namespace KP_OS_Sharp
             {
                 if (processes[i].Status)
                 {
-                    //outputs[i].Text += "Шаг " + k + ": ";
                     outputs[i].Text += "---------- " + countTicks + " ----------\r\n";
 
                     if (!processes[i].Run())
@@ -127,7 +125,7 @@ namespace KP_OS_Sharp
             {
                 for (int i = 0; i < pipes.Count(); i++) 
                 {
-                    output.Text += "\r\nКанал \"" + pipes[i].Name + "\" закрыт операционной системой.\r\n";
+                    output.Text += "\r\nКанал \"" + pipes[i].Name + "\" удалён операционной системой.\r\n";
                 }
             }
 

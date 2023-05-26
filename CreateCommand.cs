@@ -10,7 +10,7 @@ namespace KP_OS_Sharp
     {
         private int pipeType;
 
-        public CreateCommand(int pipeName, int pipeType) :base(pipeName) 
+        public CreateCommand(int pipeName, int pipeType) :base(pipeName, 1) 
         { 
             this.pipeType = pipeType; 
         }

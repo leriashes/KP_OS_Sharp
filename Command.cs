@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KP_OS_Sharp
 {
     internal abstract class Command
     {
         protected int pipeName;
+        protected int ownerPID;
+        protected TextBox output;
+        protected int duration;
 
         public int PipeName
         { 
@@ -17,9 +21,6 @@ namespace KP_OS_Sharp
                 return pipeName; 
             } 
         }
-
-
-        protected int ownerPID;
 
         public int PID
         {
@@ -34,10 +35,7 @@ namespace KP_OS_Sharp
             }
         }
 
-
-        protected System.Windows.Forms.TextBox output;
-
-        public System.Windows.Forms.TextBox Output
+        public TextBox Output
         {
             set 
             { 
@@ -45,9 +43,18 @@ namespace KP_OS_Sharp
             }
         }
 
-        public Command(int pipeName)
+        public int Duration
+        {
+            get
+            {
+                return duration;
+            }
+        }
+
+        public Command(int pipeName, int duration)
         {
             this.pipeName = pipeName;
+            this.duration = duration;
         }
 
         public abstract int Run();

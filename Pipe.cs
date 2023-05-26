@@ -9,6 +9,8 @@ namespace KP_OS_Sharp
     internal class Pipe
     {
         private int name;
+        private int type;
+        private int serverPID;
 
         public int Name
         {
@@ -18,9 +20,6 @@ namespace KP_OS_Sharp
             }
         }
 
-
-        private int type;
-
         public int Type
         {
             get 
@@ -28,9 +27,6 @@ namespace KP_OS_Sharp
                 return type; 
             }
         }
-
-
-        private int serverPID;
 
         public int ServerPID
         {
@@ -40,7 +36,6 @@ namespace KP_OS_Sharp
             }
         }
         //queue<System::String^> text;
-
 
         public Pipe(int name, int type, int serverPID)
         {
