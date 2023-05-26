@@ -12,6 +12,16 @@ namespace KP_OS_Sharp
         private int remainder;
         private int waiting;
         private Pipe pipe;
+        private int symbolsRemainder;
+
+        public override string Text 
+        { 
+            set
+            {
+                text = "";
+            }
+                
+        }
 
         public ReadCommand(int pipeName, int duration, int symbolsNumber) : base(pipeName, duration)
         {
@@ -79,18 +89,59 @@ namespace KP_OS_Sharp
             else 
             {
                 remainder--;
+                output.Text += "Идёт чтение из канала \"" + pipeName + "\"...\r\n";
             }
 
             if (remainder == 0)
             {
-                output.Text += "Чтение завершено.\r\n";
-                pipe.Close();
+                symbolsRemainder = symbolsNumber;
+
+                for (int i = 0; i < symbolsNumber; i++) 
+                {
+                    if (pipe.Text.Length > 0)
+                    {
+                        text += pipe.Text[0];
+                        pipe.Text = pipe.Text.Substring(1);
+                        symbolsRemainder--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
                 result = 0;
+
+                if (symbolsRemainder != 0)
+                {
+                    output.Text += "Удалось считать только " + (symbolsNumber - symbolsRemainder) + " из " + symbolsNumber + " символ";
+                    if (symbolsNumber % 10 == 1 && symbolsNumber != 11)
+                    {
+                        output.Text += "а ";
+                    }
+                    else
+                    {
+                        output.Text += "ов ";
+                    }
+
+                    output.Text += ".\r\n";
+                    symbolsNumber = symbolsRemainder;
+                    result = 1;
+                    duration = 2;
+                    remainder = 2;
+                }
+
+                output.Text += "Результат: \"" + text + "\"\r\n";
+
+                if (symbolsRemainder == 0)
+                    output.Text += "Чтение завершено. ";
+                output.Text += "Закрываю канал.\r\n";
+                pipe.Close();
             }
 
             if (waiting == 0)
             {
-                output.Text += "Перехожу к следующей инструкци.\r\n";
+                output.Text += "Перехожу к следующей инструкции.\r\n";
                 result = 0;
             }
 

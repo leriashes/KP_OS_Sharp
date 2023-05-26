@@ -46,6 +46,19 @@ namespace KP_OS_Sharp
             }
         }
 
+        public string Text
+        {
+            set
+            { 
+                text = value; 
+            }
+
+            get
+            {
+                return text; 
+            }
+        }
+
         public Pipe(int name, int type, int serverPID)
         {
             this.name = name;

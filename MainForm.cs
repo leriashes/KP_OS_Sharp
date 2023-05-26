@@ -473,7 +473,7 @@ namespace KP_OS_Sharp
 
 		private void CheckReady(string name, string period, string number, Button readyButton)
 		{
-			if (name == "" || period == "" || number == "" || int.Parse(period) > 23 - actions[selected_process] || int.Parse(period) == 0)
+			if (name == "" || period == "" || number == "" || int.Parse(period) > 23 - actions[selected_process] || int.Parse(period) <= 1)
 				readyButton.Enabled = false;
 			else
 				readyButton.Enabled = true;

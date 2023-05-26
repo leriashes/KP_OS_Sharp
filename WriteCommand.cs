@@ -68,6 +68,8 @@ namespace KP_OS_Sharp
 
                     waiting = -1;
                     remainder--;
+
+                    pipe.Text += text;
                 }
                 else if (openResult == 1)
                 {
@@ -95,18 +97,19 @@ namespace KP_OS_Sharp
             else
             {
                 remainder--;
+                output.Text += "Идёт запись в канал \"" + pipeName + "\"...\r\n";
             }
 
             if (remainder == 0)
             {
-                output.Text += "Запись завершена.\r\n";
+                output.Text += "Запись завершена. Закрываю канал.\r\n";
                 pipe.Close();
                 result = 0;
             }
 
             if (waiting == 0)
             {
-                output.Text += "Перехожу к следующей инструкци.\r\n";
+                output.Text += "Перехожу к следующей инструкции.\r\n";
                 result = 0;
             }
 

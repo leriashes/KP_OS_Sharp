@@ -667,10 +667,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
             this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox_write);
             this.panel1.Controls.Add(this.groupBox_read);
             this.panel1.Controls.Add(this.groupBox_del);
             this.panel1.Controls.Add(this.groupBox_add);
-            this.panel1.Controls.Add(this.groupBox_write);
             this.panel1.Location = new System.Drawing.Point(3, 363);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(980, 158);
