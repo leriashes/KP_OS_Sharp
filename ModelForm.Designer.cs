@@ -316,7 +316,7 @@
             this.MinimumSize = new System.Drawing.Size(1165, 711);
             this.Name = "ModelForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "ModelFrom";
+            this.Text = "Именованные каналы - Модель межпроцессового взаимодействия";
             this.Load += new System.EventHandler(this.ModelForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

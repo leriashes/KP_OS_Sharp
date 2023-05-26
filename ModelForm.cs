@@ -64,8 +64,7 @@ namespace KP_OS_Sharp
                     int commandCode = programs[i * 23 + j][0];
                     int pipeName = programs[i * 23 + j][1];
                     int specialCode = programs[i * 23 + j][2];
-
-                    //programs[i * 23 + j].Clear();
+                    int duration = programs[i * 23 + j][3];
 
                     Command command = null;
 
@@ -77,13 +76,13 @@ namespace KP_OS_Sharp
                     {
                         command = new DeleteCommand(pipeName);
                     }
-                    else if (commandCode == 2)
+                    else if (commandCode == 2 && duration != 0)
                     {
-                        ;
+                        command = new ReadCommand(pipeName, duration, specialCode);
                     }
-                    else if (commandCode == 3)
+                    else if (commandCode == 3 && duration != 0)
                     {
-                        ;
+                        command = new WriteCommand(pipeName, duration, specialCode);
                     }
 
                     if (command != null)

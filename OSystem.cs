@@ -198,5 +198,55 @@ namespace KP_OS_Sharp
 
             return result;
         }
+
+        public int OpenPipe(int PID, int pipeName, int actionType, out Pipe pipe)
+        {
+            int result = 2;
+            int n = pipes.Count();
+            int k = -1;
+
+            for (int i = 0; i < n && k == -1; i++)
+            {
+                if (pipes[i].Name == pipeName)
+                {
+                    k = i;
+                }
+            }
+
+            if (k != -1)
+            {
+                int type = pipes[k].Type;
+                int owner = pipes[k].ServerPID;
+
+                if (pipes[k].OpenedPID != 0)
+                {
+                    result = 3;
+                }
+                else
+                {
+                    if (actionType == 2 && (type == 0 && PID == owner || type == 1 && PID != owner) || actionType == 3 && (type == 0 && PID != owner || type == 1 && PID == owner) || type == 2)
+                        result = 0;
+                    else
+                        result = 1;
+                }
+            }
+
+            pipe = null;
+
+            if (result == 0)
+            {
+                pipes[k].Open(PID);
+
+                pipe = pipes[k];
+
+                output.Text += "\r\nКанал \"" + pipeName + "\" открыт Процессом " + PID + " на ";
+                if (actionType == 2)
+                    output.Text += "чтение.\r\n";
+                else
+                    output.Text += "запись.\r\n";
+            }
+
+            return result;
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace KP_OS_Sharp
 			{
 				programs.Add(new List<int>());
 
-				for (int j = 0; j < 3; j++)
+				for (int j = 0; j < 4; j++)
 				{
 					programs[i].Add(0);
 				}
@@ -451,7 +451,7 @@ namespace KP_OS_Sharp
 			}
 		}
 
-		private void AddAction(object sender, EventArgs e, Color color, string text, int actionType, int code)
+		private void AddAction(object sender, EventArgs e, Color color, string text, int actionType, int code, int duration)
 		{
 			int index = selected_process * 23 + actions[selected_process];
 			panels[index].BackColor = color;
@@ -468,7 +468,8 @@ namespace KP_OS_Sharp
 			programs[index].Add(actionType);
 			programs[index].Add(int.Parse(text));
 			programs[index].Add(code);
-		}
+            programs[index].Add(duration);
+        }
 
 		private void CheckReady(string name, string period, string number, Button readyButton)
 		{
@@ -548,7 +549,7 @@ namespace KP_OS_Sharp
 
 						programs[i * 23 + j].Clear();
 
-						for (int k = 0; k < 3; k++)
+						for (int k = 0; k < 4; k++)
 						{
 							programs[i * 23 + j].Insert(k, programs[i * 23 + 23 + j].First());
 							programs[i * 23 + 23 + j].RemoveAt(0);
@@ -686,36 +687,36 @@ namespace KP_OS_Sharp
 			else if (radioButton3.Checked)
 				type = 2;
 
-			AddAction(sender, e, Color.YellowGreen, maskedTextBox1.Text, 0, type);
+			AddAction(sender, e, Color.YellowGreen, maskedTextBox1.Text, 0, type, 1);
 		}
 
 		private void Button_writeAction_Click(object sender, EventArgs e)
 		{
-			AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, int.Parse(maskedTextBox6.Text));
+            int n = int.Parse(maskedTextBox5.Text);
 
-			int n = int.Parse(maskedTextBox5.Text) - 1;
+            AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, int.Parse(maskedTextBox6.Text), n);
 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < n - 1; i++)
 			{
-				AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, 0);
+				AddAction(sender, e, Color.IndianRed, maskedTextBox4.Text, 3, 0, 0);
 			}
 		}
 
 		private void Button_readAction_Click(object sender, EventArgs e)
 		{
-			AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, int.Parse(maskedTextBox7.Text));
+            int n = int.Parse(maskedTextBox8.Text);
 
-			int n = int.Parse(maskedTextBox8.Text) - 1;
+            AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, int.Parse(maskedTextBox7.Text), n);
 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < n - 1; i++)
 			{
-				AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, 0);
+				AddAction(sender, e, Color.LightBlue, maskedTextBox3.Text, 2, 0, 0);
 			}
 		}
 
 		private void Button_delAction_Click(object sender, EventArgs e)
 		{
-			AddAction(sender, e, Color.SaddleBrown, maskedTextBox2.Text, 1, 0);
+			AddAction(sender, e, Color.SaddleBrown, maskedTextBox2.Text, 1, 0, 1);
 		}
 
 		private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
