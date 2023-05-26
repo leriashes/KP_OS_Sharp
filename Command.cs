@@ -13,6 +13,7 @@ namespace KP_OS_Sharp
         protected int ownerPID;
         protected TextBox output;
         protected int duration;
+        protected string text;
 
         public int PipeName
         { 
@@ -48,6 +49,15 @@ namespace KP_OS_Sharp
             get
             {
                 return duration;
+            }
+        }
+
+        public virtual string Text
+        {
+            set
+            {
+
+                text = value; 
             }
         }
 

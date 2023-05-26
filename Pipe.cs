@@ -12,6 +12,7 @@ namespace KP_OS_Sharp
         private int type;
         private int serverPID;
         private int openedPID;
+        private string text;
 
         public int Name
         {
@@ -44,7 +45,6 @@ namespace KP_OS_Sharp
                 return openedPID;
             }
         }
-        //queue<System::String^> text;
 
         public Pipe(int name, int type, int serverPID)
         {
@@ -52,6 +52,7 @@ namespace KP_OS_Sharp
             this.type = type;
             this.serverPID = serverPID;
             openedPID = 0;
+            text = "";
         }
 
         public void Open(int PID)

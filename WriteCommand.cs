@@ -13,12 +13,29 @@ namespace KP_OS_Sharp
         private int waiting;
         private Pipe pipe;
 
+        public override string Text 
+        {
+            set
+            {
+                for (int i = 0, j = 0; i < symbolsNumber; i++)
+                {
+                    text += value[j];
+
+                    j++;
+
+                    if (j == value.Length)
+                        j = 0;
+                }
+            }
+        }
+
         public WriteCommand(int pipeName, int duration, int symbolsNumber) : base(pipeName, duration)
         {
             this.symbolsNumber = symbolsNumber;
             remainder = duration;
             pipe = null;
             waiting = -1;
+            text = "";
         }
 
         public override int Run()
@@ -47,7 +64,7 @@ namespace KP_OS_Sharp
                         output.Text += "ов ";
                     }
 
-                    output.Text += ".\r\n";
+                    output.Text += ": \"" + text + "\"\r\n";
 
                     waiting = -1;
                     remainder--;

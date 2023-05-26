@@ -19,6 +19,7 @@ namespace KP_OS_Sharp
             remainder = duration;
             pipe = null;
             waiting = -1;
+            text = "";
         }
 
         public override int Run()
