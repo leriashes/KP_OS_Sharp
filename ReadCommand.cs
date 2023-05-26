@@ -11,6 +11,7 @@ namespace KP_OS_Sharp
         private int symbolsNumber;
         private int remainder;
         private int waiting;
+        private int waitingSymbols;
         private Pipe pipe;
         private int symbolsRemainder;
 
@@ -30,17 +31,13 @@ namespace KP_OS_Sharp
             pipe = null;
             waiting = -1;
             text = "";
+            symbolsRemainder = symbolsNumber;
+            waitingSymbols = 5;
         }
 
         public override int Run()
         {
             int result = 1;
-
-            if (remainder < duration && pipe == null)
-            {
-                output.Text += "Канал \"" + pipeName + "\" был удалён.\r\n";
-                duration = remainder;
-            }
 
             if (remainder == duration) 
             {
@@ -94,9 +91,8 @@ namespace KP_OS_Sharp
 
             if (remainder == 0)
             {
-                symbolsRemainder = symbolsNumber;
-
-                for (int i = 0; i < symbolsNumber; i++) 
+                int n = symbolsRemainder;
+                for (int i = 0; i < n; i++) 
                 {
                     if (pipe.Text.Length > 0)
                     {
@@ -124,22 +120,25 @@ namespace KP_OS_Sharp
                         output.Text += "ов ";
                     }
 
-                    output.Text += ".\r\n";
-                    symbolsNumber = symbolsRemainder;
+                    
                     result = 1;
                     duration = 2;
                     remainder = 2;
+                    waitingSymbols--;
+                    output.Text += ".\r\nОсталось попыток: " + waitingSymbols + ".\r\n";
                 }
 
                 output.Text += "Результат: \"" + text + "\"\r\n";
 
                 if (symbolsRemainder == 0)
+                {
                     output.Text += "Чтение завершено. ";
+                }
                 output.Text += "Закрываю канал.\r\n";
                 pipe.Close();
             }
 
-            if (waiting == 0)
+            if (waiting == 0 || waitingSymbols == 0)
             {
                 output.Text += "Перехожу к следующей инструкции.\r\n";
                 result = 0;

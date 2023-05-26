@@ -42,12 +42,6 @@ namespace KP_OS_Sharp
         {
             int result = 1;
 
-            if (remainder < duration && pipe == null)
-            {
-                output.Text += "Канал \"" + pipeName + "\" был удалён.\r\n";
-                duration = remainder;
-            }
-
             if (remainder == duration)
             {
                 int openResult = OSystem.OS().OpenPipe(PID, pipeName, 3, out pipe);
