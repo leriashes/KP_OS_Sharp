@@ -33,7 +33,7 @@ namespace KP_OS_Sharp
 
             if (remainder == duration)
             {
-                int openResult = OSystem.OS().OpenPipe(PID, pipeName, 2, out pipe);
+                int openResult = OSystem.OS().OpenPipe(PID, pipeName, 3, out pipe);
 
                 if (openResult == 0)
                 {
