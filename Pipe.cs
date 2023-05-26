@@ -13,6 +13,7 @@ namespace KP_OS_Sharp
         private int serverPID;
         private int openedPID;
         private string text;
+        private int status;
 
         public int Name
         {
@@ -59,6 +60,20 @@ namespace KP_OS_Sharp
             }
         }
 
+        public int Status
+        {
+            get
+            {
+                return status;
+            }
+
+            set
+            {
+                status = value;
+            }
+
+        }
+
         public Pipe(int name, int type, int serverPID)
         {
             this.name = name;
@@ -66,6 +81,7 @@ namespace KP_OS_Sharp
             this.serverPID = serverPID;
             openedPID = 0;
             text = "";
+            status = 2;
         }
 
         public void Open(int PID)
@@ -76,6 +92,7 @@ namespace KP_OS_Sharp
         public void Close()
         {
             openedPID = 0;
+            status = 1;
         }
     }
 }

@@ -114,6 +114,11 @@ namespace KP_OS_Sharp
 
             countTicks++;
 
+            for (int i = 0; i < pipes.Count(); i++)
+            {
+                pipes[i].Status = 0;
+            }
+
             return countReady >= processes.Count();
         }
 
@@ -218,11 +223,11 @@ namespace KP_OS_Sharp
                 int type = pipes[k].Type;
                 int owner = pipes[k].ServerPID;
 
-                if (pipes[k].OpenedPID != 0)
+                if (pipes[k].OpenedPID != 0 || pipes[k].Status == 1)
                 {
                     result = 3;
                 }
-                else
+                else if (pipes[k].Status == 0)
                 {
                     if (actionType == 2 && (type == 0 && PID == owner || type == 1 && PID != owner) || actionType == 3 && (type == 0 && PID != owner || type == 1 && PID == owner) || type == 2)
                         result = 0;
