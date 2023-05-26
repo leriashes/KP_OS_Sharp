@@ -192,7 +192,12 @@ namespace KP_OS_Sharp
             }
 
             if (k != -1 && pipes[k].ServerPID == PID)
-                result = 0;
+            {
+                if (pipes[k].OpenedPID != 0 || pipes[k].Status == 1)
+                    result = 3;
+                else
+                    result = 0;
+            }
 
             if (result == 0)
             {

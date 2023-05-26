@@ -28,10 +28,15 @@ namespace KP_OS_Sharp
                 output.Text += "Не удалось удалить канал \"" + pipeName + "\": нет прав.\r\n";
                 result = 0;
             }
-            else
+            else if (result == 2)
             {
                 output.Text += "Не удалось удалить канал \"" + pipeName + "\": канал с заданным именем не существует.\r\n";
                 result = 0;
+            }
+            else
+            {
+                output.Text += "Не удалось удалить канал \"" + pipeName + "\": канал с заданным именем занят другим процессом-клиентом.\r\n";
+                result = 1;
             }
 
             return result;
