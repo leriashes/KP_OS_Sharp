@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KP_OS_Sharp
+﻿namespace KP_OS_Sharp
 {
     internal class WriteCommand : Command
     {
