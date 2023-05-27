@@ -15,14 +15,6 @@ namespace KP_OS_Sharp
         protected int duration;
         protected string text;
 
-        public int PipeName
-        { 
-            get 
-            { 
-                return pipeName; 
-            } 
-        }
-
         public int PID
         {
             get
@@ -41,14 +33,6 @@ namespace KP_OS_Sharp
             set 
             { 
                 output = value; 
-            }
-        }
-
-        public int Duration
-        {
-            get
-            {
-                return duration;
             }
         }
 

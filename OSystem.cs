@@ -54,11 +54,6 @@ namespace KP_OS_Sharp
             return instance;
         }
 
-        public int GetProcessesNumber()
-        {
-            return processes.Count();
-        }
-
         public void AddProcess(List<Command> program)
         {
             processes.Add(new Process(processes.Count() + 1, outputs[processes.Count()]));
@@ -72,18 +67,6 @@ namespace KP_OS_Sharp
             }
 
             output.Text += "Процесс " + processes.Count().ToString() + " создан.\r\n";
-        }
-
-        public void DelProcess(int PID)
-        {
-            for (int i = 0; i < processes.Count(); i++)
-            {
-                if (processes[i].PID == PID)
-                {
-                    processes.RemoveAt(i);
-                    break;
-                }
-            }
         }
 
         public void Start()

@@ -528,7 +528,6 @@ namespace KP_OS_Sharp
 
 			if (selected_process < 8)
 			{
-				//ДОЛЖНО ПЕРЕДВИГАТЬСЯ СОДЕРЖИМОЕ
 				flowLayoutPanels[selected_process].BackColor = flowLayoutPanels[selected_process + 1].BackColor;
 
 				for (int i = selected_process; i < 7; i++)
