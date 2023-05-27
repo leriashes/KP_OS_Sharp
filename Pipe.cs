@@ -41,19 +41,6 @@
                 return openedPID;
             }
         }
-        /*
-        public string Text
-        {
-            set
-            { 
-                text = value; 
-            }
-
-            get
-            {
-                return text; 
-            }
-        }*/
 
         public int Status
         {
