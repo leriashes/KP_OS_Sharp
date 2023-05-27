@@ -35,7 +35,6 @@ namespace KP_OS_Sharp
         {
             set
             {
-
                 text = value; 
             }
         }
