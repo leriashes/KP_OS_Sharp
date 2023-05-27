@@ -6,8 +6,9 @@
         private int type;
         private int serverPID;
         private int openedPID;
-        private string text;
+
         private int status;
+        private string text;
 
         public int Name
         {

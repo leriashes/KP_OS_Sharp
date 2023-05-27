@@ -1,21 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace KP_OS_Sharp
 {
     internal class OSystem
     {
 	    private static OSystem instance;
+
         private List<Process> processes;
         private List<Pipe> pipes;
 
-        private System.Windows.Forms.TextBox output;
-        private List<System.Windows.Forms.TextBox> outputs;
+        private TextBox output;
+        private List<TextBox> outputs;
 
         private int countReady;
         private int countTicks;
 
-        public System.Windows.Forms.TextBox Output
+        public TextBox Output
         {
             set 
             { 
@@ -23,7 +25,7 @@ namespace KP_OS_Sharp
             }
         }
 
-        public List<System.Windows.Forms.TextBox> Outputs
+        public List<TextBox> Outputs
         {
             set
             {

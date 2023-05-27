@@ -9,9 +9,10 @@ namespace KP_OS_Sharp
         private int ID;
         private bool status;
         private List<Command> program;
-        private TextBox output;
         private int commandCounter;
+
         private string text;
+        private TextBox output;
 
         public int PID
         {
