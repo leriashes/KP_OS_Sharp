@@ -88,20 +88,8 @@
 
                 if (remainder == 0)
                 {
-                    int n = symbolsRemainder;
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (pipe.Text.Length > 0)
-                        {
-                            text += pipe.Text[0];
-                            pipe.Text = pipe.Text.Substring(1);
-                            symbolsRemainder--;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
+                    text += pipe.Read(symbolsRemainder);
+                    symbolsRemainder = symbolsNumber - text.Length;
 
                     result = 0;
 

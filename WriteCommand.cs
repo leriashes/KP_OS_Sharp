@@ -57,7 +57,7 @@
                     waiting = -1;
                     remainder--;
 
-                    pipe.Text += text;
+                    pipe.Write(text);
                 }
                 else if (openResult == 1)
                 {

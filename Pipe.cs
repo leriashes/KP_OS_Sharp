@@ -41,7 +41,7 @@
                 return openedPID;
             }
         }
-
+        /*
         public string Text
         {
             set
@@ -53,7 +53,7 @@
             {
                 return text; 
             }
-        }
+        }*/
 
         public int Status
         {
@@ -88,6 +88,31 @@
         {
             openedPID = 0;
             status = 1;
+        }
+
+        public string Read(int symbolsNumber)
+        {
+            string result = "";
+
+            for (int i = 0; i < symbolsNumber; i++)
+            {
+                if (text.Length > 0)
+                {
+                    result += text[0];
+                    text = text.Substring(1);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        public void Write (string text)
+        {
+            this.text += text;
         }
     }
 }
