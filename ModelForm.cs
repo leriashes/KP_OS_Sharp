@@ -101,14 +101,14 @@ namespace KP_OS_Sharp
                 groupBoxes[i].Visible = i < processes_number;
             }
 
+            timer1.Enabled = true;
+            button_next.Enabled = true;
+
             textBox9.Text += "\r\n";
 
             OSystem.OS().Start();
 
             Timer1_Tick(sender, e);
-
-            timer1.Enabled = true;
-            button_next.Enabled = true;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
